@@ -15,9 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @ControllerAdvice
 public class ExceptionHandlingController {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     public static final String DEFAULT_ERROR_VIEW = "error";
     public static final String BUSINESS_ERROR_VIEW = "business_error";
 
