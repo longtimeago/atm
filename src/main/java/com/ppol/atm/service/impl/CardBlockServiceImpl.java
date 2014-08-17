@@ -31,6 +31,7 @@ public class CardBlockServiceImpl implements CardBlockService {
             tries.put(card.getCardNum(), ++triesCount);
             return false;
         }
+        card.setBlocked(true);
         return true;
     }
 }

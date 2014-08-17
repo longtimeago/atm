@@ -37,10 +37,4 @@ public class OperationServiceImpl implements OperationService {
         return card.getBalance();
     }
 
-    @Override
-    public void blockCard(final Card card) throws BusinessOperationException {
-        card.setBlocked(true);
-    }
-
-
 }

@@ -12,6 +12,4 @@ public interface OperationService {
     Operation withdraw(Card card, BigDecimal amount) throws BusinessOperationException;
 
     BigDecimal viewBalance(Card card) throws BusinessOperationException;
-
-    void blockCard(Card card) throws BusinessOperationException;
 }
