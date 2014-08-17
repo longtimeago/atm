@@ -1,7 +1,10 @@
 atm
 ===
 
-ATM is java web application for imaginary bank terminal. It's done JFF
+ATM is a very simple Java web application for imaginary POS terminal. It was done JFF.
+
+Frameworks used - Spring MVC, Hibernate.
+DB - MySql
 
 To try it you may need following:
 
