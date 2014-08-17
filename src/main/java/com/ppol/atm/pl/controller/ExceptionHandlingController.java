@@ -2,8 +2,6 @@ package com.ppol.atm.pl.controller;
 
 import com.ppol.atm.service.BusinessOperationException;
 import javax.servlet.http.HttpServletRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
