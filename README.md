@@ -10,9 +10,9 @@ To try it you may need following:
 
   1. Clone it to local PC (preferably Linux-based)
   2. Go to project root
-  3. Start mysql `mvn jcabi-mysql:run` (you may need perl to be installed)
+  3. Start mysql `mvn jcabi-mysql:run` (on port 3306) (you may need perl to be installed)
   4. Init DB `mvn sql:execute`
-  5. Start tomcat `mvn tomcat7:run`
+  5. Start tomcat `mvn tomcat7:run` (on port 8080)
   6. Try ATM login page `http://localhost:8080/login`
 
 
