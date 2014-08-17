@@ -3,11 +3,13 @@
 <html>
 <head>
     <ppol:header/>
+    <ppol:keypad/>
+    <script type="text/javascript" src="/resources/js/pin_keypad.js" ></script>
 </head>
 <body>
 
 <form action="pin" method="POST">
-    Enter pin: <input type="password" name="pin">
+    Enter pin: <input id="keypad" type="password" name="pin">
     <input type="submit" value="Submit" />
     <input type="reset" value="Clear" />
 </form>
