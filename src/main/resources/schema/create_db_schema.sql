@@ -1,7 +1,7 @@
-DROP TABLE test.operations;
-DROP TABLE test.cards;
+DROP TABLE IF EXISTS test.operations;
+DROP TABLE IF EXISTS test.cards;
 
-CREATE TABLE test.cards
+CREATE TABLE cards
 (
   id bigint PRIMARY KEY NOT NULL,
   card_num varchar (16) NOT NULL,
