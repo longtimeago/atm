@@ -28,7 +28,6 @@ public class LoginController {
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String login(
-        ModelMap model,
         @RequestParam(value="card_number", required=true) final String cardNum,
         final HttpServletRequest request) throws BusinessOperationException {
 
@@ -57,7 +56,6 @@ public class LoginController {
 
     @RequestMapping(value="/pin", method = RequestMethod.POST)
     public String pin(
-        final ModelMap model,
         @RequestParam(value="pin", required=true) final String pin,
         final HttpServletRequest request) throws BusinessOperationException {
 
