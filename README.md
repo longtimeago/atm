@@ -24,3 +24,5 @@ Things to improve:
   3. No tests at all (must be)
   4. Session is not secured (Spring Security shuld help)
   5. Many checks in controllers are dupplicated (Validation API should help)
+
+Card blocker service was improved but wasn't checked yet (see pull request #3)
