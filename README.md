@@ -9,12 +9,13 @@ DB - MySql
 To try it you may need following:
 
   1. Clone it to local PC (preferably Linux-based)
-  2. Go to project root
-  3. Build project with `mvn clean install`
-  4. Start mysql `mvn jcabi-mysql:run` (on port 3306) (you may need perl to be installed)
-  5. Init DB `mvn sql:execute`
-  6. Start tomcat `mvn tomcat7:run` (on port 8080)
-  7. Try ATM login page `http://localhost:8080/login`
+  2. Install libsio1 `sudo apt-get install libaio1`
+  3. Go to project root
+  4. Build project with `mvn clean install`
+  5. Start mysql `mvn jcabi-mysql:run` (on port 3306) (you may need perl to be installed)
+  6. Init DB `mvn sql:execute`
+  7. Start tomcat `mvn tomcat7:run` (on port 8080)
+  8. Try ATM login page `http://localhost:8080/login`
 
 
 Things to improve:
