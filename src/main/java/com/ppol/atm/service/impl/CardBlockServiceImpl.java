@@ -39,7 +39,7 @@ public class CardBlockServiceImpl implements CardBlockService {
 			} else {
 				++triesCount;
 				tries.put(cardNum, triesCount);
-				if (triesCount <= MAX_WRONG_PIN_TRIES) {
+				if (triesCount >= MAX_WRONG_PIN_TRIES) {
 					card.setBlocked(true);
 					return true;
 				}
