@@ -2,4 +2,6 @@ language: java
 jdk:
   - oraclejdk7
   - openjdk7
+install:
+  - sudo apt-get install libaio1
 script: mvn clean install
