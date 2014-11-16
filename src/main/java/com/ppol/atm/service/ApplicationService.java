@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 
 /**
  * Main service facade
- *
- * Created by ppolishchuk on 8/16/14.
  */
 public interface ApplicationService {
 

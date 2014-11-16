@@ -13,9 +13,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by ppolishchuk on 8/16/14.
- */
 @Service
 @Transactional
 public class CardBlockServiceImpl implements CardBlockService {

@@ -1,8 +1,5 @@
 package com.ppol.atm.pl.model;
 
-/**
- * Created by ppolishchuk on 8/16/14.
- */
 public class CardInfo {
 
     private String cardNum;

@@ -10,9 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by ppolishchuk on 8/16/14.
- */
 @Repository
 public class CardsDaoImpl implements CardsDao {
 

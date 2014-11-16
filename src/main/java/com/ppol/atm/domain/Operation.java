@@ -11,9 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * Created by ppolishchuk on 8/16/14.
- */
 @Entity
 @Table(name = "operations")
 public class Operation implements Serializable {

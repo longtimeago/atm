@@ -12,9 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- * Created by ppolishchuk on 8/16/14.
- */
 @Entity
 @Table(name = "cards")
 public class Card implements Serializable {

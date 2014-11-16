@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by ppolishchuk on 8/16/14.
- */
 @Service
 @Transactional
 public class CardServiceImpl implements CardService {
