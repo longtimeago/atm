@@ -17,4 +17,12 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login/**"/>
+            <mvc:exclude-mapping path="/logout/**"/>
+            <bean class="com.ppol.atm.pl.interceptor.SecurityInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

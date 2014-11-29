@@ -1,6 +1,7 @@
 package com.ppol.atm.pl.controller;
 
 import com.ppol.atm.pl.model.CardInfo;
+import com.ppol.atm.pl.utils.SessionUtils;
 import com.ppol.atm.service.ApplicationService;
 import com.ppol.atm.service.BusinessOperationException;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class LoginController {
             throw new BusinessOperationException("Card is blocked");
         }
 
-        request.getSession().setAttribute("card_number", cardNum);
+        SessionUtils.setCardNum(request, cardNum);
 
         return "redirect:pin";
     }
@@ -59,11 +60,7 @@ public class LoginController {
             throw new BusinessOperationException("Invalid pin");
         }
 
-        final String cardNumber = (String) request.getSession().getAttribute("card_number");
-        // session is broken -> redirect to login page
-        if (StringUtils.isBlank(cardNumber)) {
-            return "redirect:login";
-        }
+        final String cardNumber = SessionUtils.getCardNum(request);
 
         applicationService.checkPin(cardNumber, pin);
 
