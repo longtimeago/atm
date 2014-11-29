@@ -1,6 +1,7 @@
 package com.ppol.atm.pl.controller;
 
 import com.ppol.atm.domain.Operation;
+import com.ppol.atm.pl.utils.SessionUtils;
 import com.ppol.atm.service.ApplicationService;
 import com.ppol.atm.service.BusinessOperationException;
 import java.math.BigDecimal;
@@ -29,11 +30,7 @@ public class OperationController {
         ModelMap model,
         HttpServletRequest request) throws BusinessOperationException {
 
-        final String cardNumber = (String) request.getSession().getAttribute("card_number");
-        // session is broken -> redirect to login page
-        if (StringUtils.isBlank(cardNumber)) {
-            return "redirect:login";
-        }
+        final String cardNumber = SessionUtils.getCardNum(request);
 
         final BigDecimal balance = this.applicationService.getBalance(cardNumber);
         model.addAttribute("balance", balance.doubleValue());
@@ -52,11 +49,7 @@ public class OperationController {
         ModelMap model,
         HttpServletRequest request) throws BusinessOperationException {
 
-        final String cardNumber = (String) request.getSession().getAttribute("card_number");
-        // session is broken -> redirect to login page
-        if (StringUtils.isBlank(cardNumber)) {
-            return "redirect:login";
-        }
+        final String cardNumber = SessionUtils.getCardNum(request);
 
         final Operation operation = this.applicationService.withdraw(cardNumber, BigDecimal.valueOf(Double.valueOf(amount)));
         model.addAttribute("operation", operation);
