@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:beans="http://www.springframework.org/schema/mvc"
+       xmlns:int-file="http://www.springframework.org/schema/integration/file"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
+
+    <int:poller default="true" fixed-delay="100"/>
+
+    <!-- CHANNELS -->
+    <int:channel id="documentInChannel" datatype="com.ppol.atm.integration.api.model.Document">
+        <int:queue/>
+    </int:channel>
+
+    <int:channel id="filteredChannel" datatype="com.ppol.atm.integration.api.model.Document"/>
+
+    <int:channel id="jpgChannel" datatype="com.ppol.atm.integration.api.model.Document"/>
+
+    <int:channel id="pngChannel" datatype="com.ppol.atm.integration.api.model.Document"/>
+
+    <int:channel id="fileOutChannel"/>
+
+    <!-- END CHANNELS -->
+
+    <int:filter input-channel="documentInChannel" output-channel="filteredChannel"
+            ref="typeFilter" method="accept"/>
+
+    <int:router method="route" input-channel="filteredChannel">
+        <bean class="com.ppol.atm.integration.impl.ImageTypeRouter"/>
+    </int:router>
+
+    <int:transformer id="testTransformer" input-channel="jpgChannel" method="transform"
+                     output-channel="pngChannel" ref="jpgToPngTransformer">
+    </int:transformer>
+
+
+    <int:service-activator input-channel="pngChannel"
+                                   output-channel="fileOutChannel"
+                                   ref="fileOutputHandler"/>
+
+    <int-file:outbound-channel-adapter id="fileOutChannel"
+        directory="/tmp/out" auto-create-directory="true" />
+
+</beans>

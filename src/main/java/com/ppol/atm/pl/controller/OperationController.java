@@ -9,6 +9,8 @@ import com.ppol.atm.service.BusinessOperationException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class OperationController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(OperationController.class);
+
 
     @Autowired
     private FinancialService financialService;
@@ -65,7 +70,7 @@ public class OperationController {
 
     @RequestMapping(value="/upload", method = RequestMethod.POST)
     public String uploadDoc(@RequestParam("file") MultipartFile file, ModelMap model) throws IOException {
-        System.out.println("Uploading file: " + file.getOriginalFilename());
+        LOG.info("Uploading file: " + file.getOriginalFilename());
         if (!file.isEmpty()) {
             documentService.process(new Document(file.getOriginalFilename(),
                 file.getBytes(), file.getContentType()));

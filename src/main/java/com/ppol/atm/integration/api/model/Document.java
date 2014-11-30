@@ -1,5 +1,6 @@
 package com.ppol.atm.integration.api.model;
 
+import java.util.Arrays;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Document {
@@ -24,5 +25,13 @@ public class Document {
 
     public String getContentType() {
         return contentType;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+            "name='" + name + '\'' +
+            ", contentType='" + contentType + '\'' +
+            '}';
     }
 }
