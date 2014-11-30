@@ -12,6 +12,7 @@
         <slf4.version>1.6.1</slf4.version>
         <spring.version>3.2.10.RELEASE</spring.version>
         <hibernate.version>4.2.11.Final</hibernate.version>
+        <h2.version>1.4.182</h2.version>
     </properties>
 
     <dependencies>
@@ -61,9 +62,9 @@
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.26</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
         <dependency>
@@ -118,95 +119,45 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.8</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.jcabi</groupId>
-                                    <artifactId>mysql-dist</artifactId>
-                                    <version>5.6.14</version>
-                                    <classifier>${mysql.classifier}</classifier>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/mysql-dist</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.jcabi</groupId>
-                <artifactId>jcabi-mysql-maven-plugin</artifactId>
-                <version>0.8.1</version>
-                <executions>
-                    <execution>
-                        <id>mysql-test</id>
-                        <goals>
-                            <goal>classify</goal>
-                            <goal>start</goal>
-                            <goal>stop</goal>
-                        </goals>
-                        <configuration>
-                            <port>3306</port>
-                            <data>${project.build.directory}/mysql-data</data>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>1.5</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.31</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/test</url>
-                    <username>root</username>
-                    <password>root</password>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-cli</id>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <delimiter>;</delimiter>
-                            <delimiterType>normal</delimiterType>
-                            <autocommit>true</autocommit>
-                            <srcFiles>
-                                <srcFile>src/main/resources/schema/create_db_schema.sql</srcFile>
-                                <srcFile>src/main/resources/schema/fill_db.sql</srcFile>
-                            </srcFiles>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <path>/</path>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>db</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <version>3.1</version>
+                        <configuration>
+                            <url>jdbc:h2:tcp://localhost/~/test</url>
+                            <user>sa</user>
+                            <password>sa</password>
+                            <schemas>
+                                <schema>ATM</schema>
+                            </schemas>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>migrate db</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>migrate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.h2database</groupId>
+                                <artifactId>h2</artifactId>
+                                <version>${h2.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
