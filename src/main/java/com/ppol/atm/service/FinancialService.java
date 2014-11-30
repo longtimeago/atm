@@ -5,9 +5,9 @@ import com.ppol.atm.pl.model.CardInfo;
 import java.math.BigDecimal;
 
 /**
- * Main service facade
+ * Main financial service facade
  */
-public interface ApplicationService {
+public interface FinancialService {
 
     CardInfo getCard(String cardName) throws BusinessOperationException;
 

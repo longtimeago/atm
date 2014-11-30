@@ -25,4 +25,13 @@
             <bean class="com.ppol.atm.pl.interceptor.SecurityInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="1000000"/>
+
+    </bean>
+
 </beans>

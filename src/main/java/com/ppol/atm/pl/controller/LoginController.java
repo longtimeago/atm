@@ -2,7 +2,7 @@ package com.ppol.atm.pl.controller;
 
 import com.ppol.atm.pl.model.CardInfo;
 import com.ppol.atm.pl.utils.SessionUtils;
-import com.ppol.atm.service.ApplicationService;
+import com.ppol.atm.service.FinancialService;
 import com.ppol.atm.service.BusinessOperationException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     @Autowired
-    private ApplicationService applicationService;
+    private FinancialService financialService;
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String welcome() {
@@ -32,7 +32,7 @@ public class LoginController {
             throw new BusinessOperationException("Card number should not be blank");
         }
 
-        final CardInfo card = this.applicationService.getCard(cardNum);
+        final CardInfo card = this.financialService.getCard(cardNum);
         if (card == null) {
             throw new BusinessOperationException("Card not found");
         }
@@ -62,7 +62,7 @@ public class LoginController {
 
         final String cardNumber = SessionUtils.getCardNum(request);
 
-        applicationService.checkPin(cardNumber, pin);
+        financialService.checkPin(cardNumber, pin);
 
         return "redirect:operation";
     }
