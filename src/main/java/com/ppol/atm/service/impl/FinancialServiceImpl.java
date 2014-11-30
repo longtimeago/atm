@@ -3,7 +3,7 @@ package com.ppol.atm.service.impl;
 import com.ppol.atm.domain.Card;
 import com.ppol.atm.domain.Operation;
 import com.ppol.atm.pl.model.CardInfo;
-import com.ppol.atm.service.ApplicationService;
+import com.ppol.atm.service.FinancialService;
 import com.ppol.atm.service.BusinessOperationException;
 import com.ppol.atm.service.CardBlockService;
 import com.ppol.atm.service.CardService;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class ApplicationServiceImpl implements ApplicationService {
+public class FinancialServiceImpl implements FinancialService {
 
     @Autowired
     private CardService cardService;
