@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class ImageTypeRouter {
 
     private static final Logger LOG = LoggerFactory.getLogger(ImageTypeRouter.class);
+
     @Autowired
     @Qualifier("jpgChannel")
     private MessageChannel jpgChannel;
@@ -27,7 +28,7 @@ public class ImageTypeRouter {
 
     @Router
     public MessageChannel route(final Message<Document> message) {
-        String contentType = message.getPayload().getContentType();
+        final String contentType = message.getPayload().getContentType();
         MessageChannel targetChannel;
         if ("image/jpeg".equals(contentType)) {
             LOG.info(
@@ -35,14 +36,14 @@ public class ImageTypeRouter {
                     "Message [%s] routed to [jpgChannel] channel", message.getHeaders().getId()
                 )
             );
-            targetChannel = jpgChannel;
+            targetChannel = this.jpgChannel;
         } else {
-            LOG.info(
+            ImageTypeRouter.LOG.info(
                 String.format(
                     "Message [%s] routed to [pngChannel] channel", message.getHeaders().getId()
                 )
             );
-            targetChannel = pngChannel;
+            targetChannel = this.pngChannel;
         }
         return targetChannel;
     }
