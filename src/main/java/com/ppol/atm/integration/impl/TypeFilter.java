@@ -9,7 +9,7 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 /**
- * Pass only PNG nad JPG images
+ * Pass only PNG and JPG images
  */
 @Component
 public class TypeFilter {
