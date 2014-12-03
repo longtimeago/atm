@@ -1,3 +1,6 @@
+install:
+  - "sudo apt-get install libaio1"
+
 merge:
   env:
     MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
