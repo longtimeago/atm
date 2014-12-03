@@ -38,6 +38,5 @@ public final class LoginControllerTest {
         Mockito.when(this.financialService.getCard(cardNum)).thenReturn(info);
 
         Assert.assertEquals("redirect:pin", this.controller.login(cardNum, request));
-
     }
 }
