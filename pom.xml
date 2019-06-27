@@ -6,7 +6,7 @@
     <artifactId>atm</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>atm Maven Webapp</name>
+    <name>atm Maven Webapp updated</name>
 
     <properties>
         <slf4.version>1.6.1</slf4.version>
